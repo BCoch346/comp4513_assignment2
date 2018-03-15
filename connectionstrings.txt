@@ -1,0 +1,8 @@
+nal10hsrqpa59sa0r9jh0ln3bf
+heroku_vsgzfrzr
+
+mongodb://heroku_vsgzfrzr:nal10hsrqpa59sa0r9jh0ln3bf@ds213209.mlab.com:13209/heroku_vsgzfrzr
+
+mongo ds213209.mlab.com:13209/heroku_vsgzfrzr -u heroku_vsgzfrzr -p nal10hsrqpa59sa0r9jh0ln3bf
+
+mongoimport -h ds213209.mlab.com:13209 -d heroku_vsgzfrzr -c <collection> -u heroku_vsgzfrzr -p nal10hsrqpa59sa0r9jh0ln3bf --file <input file>
