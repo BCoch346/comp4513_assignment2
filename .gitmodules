@@ -1,0 +1,6 @@
+[submodule "boiling-mountain-83140"]
+	path = boiling-mountain-83140
+	url = https://git.heroku.com/boiling-mountain-83140.git
+[submodule "obscure-temple-42697"]
+	path = obscure-temple-42697
+	url = https://git.heroku.com/obscure-temple-42697.git
