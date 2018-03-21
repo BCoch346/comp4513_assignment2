@@ -22,7 +22,6 @@ class StockVisualizer extends Component {
                 animation:{
                     duration: 1000,
                     easing: 'linear',
-                    startup: true,
                 },
             },
             

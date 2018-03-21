@@ -1,34 +1,17 @@
 import React, { Component } from 'react';
-// import axios from 'axios';
-import { Chart } from 'react-google-charts';
+import axios from 'axios';
+import {BarChart} from 'react-easy-chart';
 
 //a.For the Summary sub-view, the other information for the company. Also display a bar chart of the average close price for each month. You are free to use any react-friendly JS charting library.
 
 //TODO: IMPLEMENT THE HISTORICAL DATA 
 //TODO: CSS
-//TODO: change to google graphs
-
 class CompanySummarySub extends Component {
     constructor(props){
         super(props);
         this.state ={
-            company : {symbol: props.symbol, name:props.name, sector: props.sector, subindustry: props.subindustry, address: props.address, date_added: props.date_added, CIK: props.CIK, frequency: props.frequency},
-            options: {
-                title: 'Something',
-                animation:{
-                    duration: 1000,
-                    easing: 'linear',
-                    startup: true,
-                },
-            },
-            data : ([
-              ['Year', 'Sales'],
-              ['2014', 1000],
-              ['2015', 1170],
-              ['2016', 660],
-              ['2017', 1030]
-            ])
-        };
+            company : {symbol: props.symbol, name:props.name, sector: props.sector, subindustry: props.subindustry, address: props.address, date_added: props.date_added, CIK: props.CIK, frequency: props.frequency}
+        }
     }
     
     componentDidMount(){
@@ -44,6 +27,7 @@ class CompanySummarySub extends Component {
     }
     
     render(){
+        
         if (!this.state.company) {return null;}
             else return (
                 <div>
@@ -55,17 +39,20 @@ class CompanySummarySub extends Component {
                     <div>{this.state.company.date_added}</div>
                     <div>{this.state.company.CIK}</div>
                     <div>{this.state.company.frequency}</div>
-                    <div>
-                        <Chart
-                              chartType="BarChart"
-                              data={this.state.data}
-                              options={this.state.options}
-                              graph_id="BarChart"
-                              width="100%"
-                              height="400px"
-                              legend_toggle
-                            />
-                    </div>
+                    <BarChart
+                        colorBars
+                        axisLabels={{x: 'My x Axis', y: 'My y Axis'}}
+                        axes
+                        data={[
+                          {x: 'A', y: 20},
+                          {x: 'B', y: 30},
+                          {x: 'C', y: 40},
+                          {x: 'D', y: 20},
+                          {x: 'E', y: 40},
+                          {x: 'F', y: 25},
+                          {x: 'G', y: 5}
+                        ]}
+                      />
                     
                 </div>
             );

@@ -7,17 +7,14 @@
 
 //TODO: CSS for the image and the name
 import React, { Component } from 'react';
-// import axios from 'axios';
-// import { NavLink } from 'react-router-dom';
+import axios from 'axios';
+import { NavLink } from 'react-router-dom';
 import CompanySummarySub from './CompanySummarySub.js';
 import CompanyListSub from './CompanyListSub.js';
 
 import jsondata from '../jsonFiles/companies.json';
 
-/*
-SingleCompany returns a page with a company information which is queried from a passed id. 
-This information is the company logo, name and two tabs which have specific information about the chosen company.
-*/
+
 class SingleCompany extends Component {
     constructor(props){
         super(props);
@@ -40,7 +37,6 @@ class SingleCompany extends Component {
         });*/
     }
     
-    // function which switches the tabs in the page by changing the state of defaultTab and the class within 
     changeTab = ()=>{
         if (this.state.defaultTab) {
             this.setState({defaultTab:false});
@@ -55,7 +51,6 @@ class SingleCompany extends Component {
     }
     
     render(){
-        {/* Check the state of the company property and render if its existent and meaningful */}
         if (! this.state.company || this.state.company.length === 0){
             return null;
         }else{
@@ -65,11 +60,10 @@ class SingleCompany extends Component {
                     <div className="container logo">
                         <figure className="image image is-3by2">
                             {/* https://stackoverflow.com/questions/44154939/load-local-images-in-react-js */}
-                            {/* gets the relative public url to retrieve the logos in the public logos */}
                           <img src={process.env.PUBLIC_URL + '/logos/'+ this.state.symbol+ '.svg'} alt={this.state.symbol} />
                         </figure>
-                        {/* Displays the name from the state of company set by the query and result upon loading this page. */}
                         <div>{this.state.company.name}</div>
+                        
                     </div>
                 </div>
                 {/* Render tabs and pass in props*/}
@@ -80,22 +74,16 @@ class SingleCompany extends Component {
                     </ul>
                 </div>
                 <div className="box is-radiusless singleUserBox">
-                    {
-                    /* Check for the state of default tab to decide whether to display ComanySummarySub or CompanyListSub it. Upon rendering submits parameters to the props of the rendered child to allow for the specific company details */
-                    this.state.defaultTab? 
-                        /* Render the CompanySummarySub */
-                        <div><CompanySummarySub symbol={this.state.symbol} 
+                    {this.state.defaultTab? 
+                        <CompanySummarySub symbol={this.state.symbol} 
                             name= {this.state.company.name}
                             sector= {this.state.company.sector}
                             subindustry= {this.state.company.subindustry}
                             address= {this.state.company.address}
                             date_added= {this.state.company.date_added}
                             CIK= {this.state.company.CIK}
-                            frequency= {this.state.company.frequency}/></div>
-                        /* There is a colon needed under this line for the rendering if statement to work */
-                        :
-                        /* Render the CompanyListSub */
-                        <div><CompanyListSub company={this.state.company} /></div>
+                            frequency= {this.state.company.frequency}/>
+                        :<CompanyListSub company={this.state.company} />
                     }
                 </div>
             </article>
